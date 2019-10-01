@@ -1,0 +1,22 @@
+ul {
+  list-style-type: none; 
+  padding: px;
+}
+
+ul li:before {
+  content: "$"; 
+  margin: 0 1em; 
+  margin-left: -30px; 
+  float: left; 
+  color: red
+}
+
+.blinking {
+  animation:blinkingText 1s infinite;
+}
+
+@keyframes blinkingText{
+  0% { color: transparent; }
+  50%{ color: #000; }
+  100%{ color: transparent; }
+}

@@ -1,0 +1,51 @@
+.console-textarea-container {
+  background-color: transparent;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  font-size: 16px;
+}
+
+.console-textarea,
+.console-textarea-logs {
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  padding-left: 48px;
+  min-height: 12px;
+}
+
+.console-textarea-logs > p {
+  margin: 0;
+  position: relative;
+  white-space: pre-line;
+}
+
+.console-textarea-logs > p:not(:first-child) {
+  margin-top: 0px;
+}
+
+.console-textarea-logs > p.log-item::before,
+.console-textarea::before {
+  content: "$";
+  color: red;
+}
+
+.console-textarea-logs > p.log-item::before {
+  position: absolute;
+  left: -24px;
+}
+
+.console-textarea::before {
+  position: absolute;
+  left: 24px;
+}
+
+.console-textarea-logs > p::selection,
+.console-textarea::selection {
+  color: #fff;
+  background-color: #000;
+}
+
+.console-textarea:focus {
+  outline: 0;
+}

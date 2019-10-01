@@ -2,51 +2,7 @@
 layout: default
 ---
 
-<style>
-  .console-textarea-container {
-    background-color: transparent;
-    overflow-wrap: break-word;
-    word-break: break-all;
-    font-size: 16px;
-  }
-  .console-textarea,
-  .console-textarea-logs {
-    box-sizing: border-box;
-    width: 100%;
-    position: relative;
-    padding-left: 48px;
-    min-height: 12px;
-  }
-  .console-textarea-logs > p {
-    margin: 0;
-    position: relative;
-    white-space: pre-line;
-  }
-  .console-textarea-logs > p:not(:first-child) {
-    margin-top: 0px;
-  }
-  .console-textarea-logs > p.log-item::before,
-  .console-textarea::before {
-    content: "$";
-    color: red;
-  }
-  .console-textarea-logs > p.log-item::before {
-    position: absolute;
-    left: -24px;
-  }
-  .console-textarea::before {
-    position: absolute;
-    left: 24px;
-  }
-  .console-textarea-logs > p::selection,
-  .console-textarea::selection {
-    color: #fff;
-    background-color: #000;
-  }
-  .console-textarea:focus {
-    outline: 0;
-  }
-</style>
+<link rel="stylesheet" href="assets/css/index.css"/>
 
 <section class="console-textarea-container">
   <div class="console-textarea-logs">
@@ -76,33 +32,4 @@ layout: default
   <div class="console-textarea" contenteditable spellcheck="false"></div>
 </section>
 
-<script>
-  let consoleTextareaLogs = document.querySelector(".console-textarea-logs");
-  let consoleTextarea = document.querySelectorAll(".console-textarea");
-  let sudoRegExp = new RegExp("^sudo .+");
-  consoleTextarea.forEach(el => {
-    el.addEventListener("keypress", e => {
-      let key = e.which || e.keyCode;
-      if (key === 13) {
-        e.preventDefault();
-        let consoleText = el.innerHTML;
-        let p = document.createElement("p");
-        p.className = "log-item";
-        p.innerHTML = consoleText;
-        if (sudoRegExp.test(consoleText)) {
-          p.innerHTML += `\nuser is not in the sudoers file. Please contact hendratay for access.`;
-        } else if (consoleText === "about") {
-          window.location.href = "http://hendratay.github.io/about";
-        } else if (consoleText === "blog") {
-          window.location.href = "http://hendratay.github.io/blog";
-        } else if (consoleText === "project") {
-          window.location.href = "http://hendratay.github.io/project";
-        } else {
-          window.open('https://www.google.com/search?q=' +  consoleText);
-        }
-        consoleTextareaLogs.appendChild(p);
-        el.innerHTML = "";
-      }
-    });
-  });
-</script>
+<script src="assets/js/index.js"></script>
